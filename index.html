@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>나만의 어플리케이션 만들기</title>
+    <!-- 폰트어썸 (아이콘 사용을 위한 라이브러리) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* 기본 폰트 및 리셋 */
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Pretendard', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* 라이트/다크 모드 색상 변수 */
+        :root {
+            --bg-color: #f3f4f6;
+            --text-color: #1f2937;
+            --card-bg: #ffffff;
+            --card-hover: #f9fafb;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --primary: #4f46e5;
+        }
+
+        body.dark-mode {
+            --bg-color: #111827;
+            --text-color: #f9fafb;
+            --card-bg: #1f2937;
+            --card-hover: #374151;
+            --shadow: rgba(0, 0, 0, 0.4);
+            --primary: #818cf8;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* 메인 컨테이너 */
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* 상단 헤더 영역 */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--card-bg);
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+        }
+
+        /* 다크모드 버튼 */
+        #theme-toggle {
+            background: var(--card-bg);
+            border: none;
+            color: var(--text-color);
+            font-size: 1.2rem;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 6px var(--shadow);
+            transition: transform 0.2s;
+        }
+
+        #theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        /* 앱 리스트 (그리드 레이아웃) */
+        ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 25px;
+        }
+
+        /* 개별 앱 카드 */
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--card-bg);
+            padding: 25px 15px;
+            border-radius: 20px;
+            box-shadow: 0 10px 15px -3px var(--shadow);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
+            height: 100%;
+        }
+
+        /* 카드 마우스 호버 효과 */
+        a:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px var(--shadow);
+            background-color: var(--card-hover);
+        }
+
+        /* 아이콘 스타일 */
+        .icon-box {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        /* 빈 앱(추가 버튼) 스타일 */
+        .empty-app {
+            border: 2px dashed #9ca3af;
+            background-color: transparent;
+            box-shadow: none;
+            color: #9ca3af;
+        }
+        
+        .empty-app .icon-box {
+            color: #9ca3af;
+        }
+
+        .empty-app:hover {
+            background-color: rgba(156, 163, 175, 0.1);
+            transform: translateY(0);
+        }
+
+        /* 텍스트 스타일 */
+        .app-name {
+            font-size: 1rem;
+            font-weight: 600;
+            word-break: keep-all;
+            line-height: 1.3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h3><i class="fas fa-mobile-alt" style="color: var(--primary); margin-right: 10px;"></i>[나만의 어플 만들기]</h3>
+            <!-- 다크모드 버튼 -->
+            <button id="theme-toggle" title="테마 변경">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <ul>
+            <li>
+                <a href="게임/game.html">
+                    <div class="icon-box"><i class="fas fa-rocket"></i></div>
+                    <span class="app-name">우주선게임</span>
+                </a>
+            </li>
+            <li>
+                <a href="레트로게임/retro.html">
+                    <div class="icon-box"><i class="fas fa-gamepad"></i></div>
+                    <span class="app-name">레트로게임</span>
+                </a>
+            </li>
+            <li>
+                <a href="뽑기/Gacha.html">
+                    <div class="icon-box"><i class="fas fa-utensils"></i></div>
+                    <span class="app-name">점심메뉴뽑기</span>
+                </a>
+            </li>
+            <li>
+                <a href="학습대시보드/cal.html">
+                    <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+                    <span class="app-name">학습대시보드</span>
+                </a>
+            </li>
+            <li>
+                <a href="심리테스트/psychological.html">
+                    <div class="icon-box"><i class="fas fa-brain"></i></div>
+                    <span class="app-name">심리테스트 진단 앱</span>
+                </a>
+            </li>
+            <!-- 새롭게 추가된 카드게임 -->
+            <li>
+                <a href="해보고싶었던거/sts.html">
+                    <div class="icon-box"><i class="fas fa-layer-group"></i></div>
+                    <span class="app-name">카드게임</span>
+                </a>
+            </li>
+            <!-- 새롭게 추가된 생존게임 -->
+            <li>
+                <a href="해보고싶었던거/vams.html">
+                    <div class="icon-box"><i class="fas fa-fire"></i></div>
+                    <span class="app-name">생존게임</span>
+                </a>
+            </li>
+            <!-- 새 앱 추가하기 빈칸 -->
+            <li>
+                <a href="#" class="empty-app">
+                    <div class="icon-box"><i class="fas fa-plus"></i></div>
+                    <span class="app-name">새 앱 추가</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 다크모드 상호작용 스크립트 -->
+    <script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = themeToggleBtn.querySelector('i');
+        const body = document.body;
+
+        themeToggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            
+            // 아이콘 변경 (달 <-> 해)
+            if(body.classList.contains('dark-mode')) {
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+    </script>
+</body>
+</html>
